@@ -1,71 +1,115 @@
 import React,  { useEffect, useState } from 'react';
-import {useLocation} from "react-router-dom";
-import { doc, getDocs, query, collection, } from "firebase/firestore";
+import {useLocation, useNavigate, Link} from "react-router-dom";
+import { doc, getDoc, query, collection, } from "firebase/firestore";
 import {db, auth} from '../firebase'
+import NavbarPaper from './NavbarPaper'
+import { Card, ListGroupItem , ListGroup, Button} from 'react-bootstrap';
 
-
+import "../styling/module.css";
 
 export default function Module(props) {
     const search = useLocation().search;
-    const module_ = new URLSearchParams(search).get('module');
+    const module = new URLSearchParams(search).get('module');
+
+    const navigate = useNavigate();
+
     
     const [data, setData] = useState("")
-    const [modules, setModules] = useState(<h1>Loading</h1>)
-/*
+    const [moduleCard, setModuleCard] = useState(<h1>Loading</h1>)
+
     async function getData()
     {
-        const q = query(collection(db, "Modules"));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-            console.log(doc.id + " " + doc.data());
-            dataArr.push(doc.data())
-        })
-        const docRef = doc(db, "Users", module_);
+
+        const docRef = doc(db, "Modules", module);
         getDoc(docRef)
           .then((data) => {
+            console.log(data.data())
             if (!data.data())
             {
-                
+                noDataAvailable()
             }
+            else{
+                generateModuleCard(data.data())
+            }
+        })
             
              
-    });
-        console.log("dataArr:")
-        console.log(dataArr)
-        generateModules(dataArr)
-        
-        
-                    // doc.data() is never undefined for query doc snapshots
-                    // console.log(doc.id, " => ", doc.data());
+
 
     }
 
-    function generateModules(dataArr)
+    function noDataAvailable()
     {
-        setModules(
+        setModuleCard(
+            <div class = "cardStyle noDataCard">
+            <Card border="danger">
+                <Card.Title>Unfortunately we don't have any past papers loaded for {module}.</Card.Title>
+                <ListGroupItem>Please try again soon!</ListGroupItem>
+                <ListGroupItem><Link to="/dashboard"><Button variant="secondary" size="sm">Go Back</Button></Link></ListGroupItem>
+                <br/>
+            </Card>
+            </div>
+            
+      
+    )
+    }
+
+    function generateModuleCard(dataArr)
+    {
+        console.log(dataArr.years)
+
+        setModuleCard(
    
                 <>
-                <h1>Modules</h1>
-                <select>
-                {dataArr.map((module) => (
-                    <option value={module.ModuleID}>{module.ModuleID}</option>
-                )
-                )}
-                </select>
+                <div class="paperList">
+                <Card border="success">
+                    <Card.Header>{module}</Card.Header>
+                    <Card.Body>
+                    <Card.Title>Past Papers for {module}</Card.Title>
+                        <ul>
+                        {dataArr.years.sort().map((year) => (
+                        <li value={year} onClick={handleChoseYear}>{year}</li>
+                        )
+                        )}
+                        </ul>
+                    </Card.Body>
+                </Card>
+                </div>
                 </>
           
         )
         console.log("stored ")
     }
 
+    const handleChoseYear = e => 
+    {
+        e.preventDefault()
+        let result = e.target.getAttribute('value')
+        let year = result.substring(0, 4);
+        let paperNum = result.slice(4);
+        navigate("/paper?paper="+year+module+paperNum)
+    }
+
     useEffect(() => {
         getData();
         
       }, []);
-      */
+      
     return (
         <>
-            {module}
+          <NavbarPaper/>
+          <div class = "body">
+            <div class="mainContent">
+
+                {moduleCard}
+
+            </div>
+          </div>
+          
+           
+
+            
+        
         </>
         
     )

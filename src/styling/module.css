@@ -1,0 +1,16 @@
+.cardStyle{
+    text-align: center;
+    
+}
+
+.noDataCard{
+    margin-top: 10vh;
+}
+
+.paperList li:hover{
+
+    background-color: rgba(47, 255, 0, 0.187);
+    cursor: pointer;
+
+}
+

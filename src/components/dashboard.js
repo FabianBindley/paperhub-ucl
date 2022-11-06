@@ -5,6 +5,10 @@ import {db, auth} from '../firebase'
 import {collection, addDoc, Timestamp, doc, getDoc} from 'firebase/firestore'
 import { signInWithRedirect ,signInWithPopup,  GoogleAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
 import { Button, Card, Image } from 'react-bootstrap';
+import NavbarPaper from './NavbarPaper'
+import Search from './searchArea'
+import "../styling/main.css";
+
 
 
 export default function Home() {
@@ -55,21 +59,26 @@ export default function Home() {
     }
 
 
-    function SignOut()
-    {
-        
-        signOut(auth).then(() => {
-          
-        // Sign-out successful.
-        window.location.href = '/';
-        })
-        
-    }
-
+    
     return (
         <>
+          <NavbarPaper/>
+          <div class="page">
+            <div class="mainContent">
 
-            <h1>Paperhub dashboard</h1>
+            <div class = "row">
+              <div class = "title">Welcome to Paperhub</div>
+            </div>
+            <div class = "row">
+              <Search/>
+            </div>
+
+
+
+            </div>
+          </div>
+          
+           
 
             
         

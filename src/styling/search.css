@@ -1,6 +1,41 @@
-.searchContainer{
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+
+.autocomplete{
+    border: 1px solid;
+    border-radius: 5px;
+    border-color: green;
 }
+
+.cardPadding
+{
+
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+@media screen and (max-width:800px) {
+
+    .radioButtons{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .searchContainer{
+        width: 90vw;
+        margin-left: 5vw;
+        margin-right: 5vw;
+
+    }
+  
+ 
+  
+    
+  
+  }

@@ -8,6 +8,11 @@ import {collection, addDoc, Timestamp} from 'firebase/firestore'
 import { Button, Card, Image } from 'react-bootstrap';
 
 import { FcGoogle } from 'react-icons/fc';
+import { GoSignOut } from 'react-icons/go';
+
+import "../styling/home.css";
+
+
 
 export default function Home() {
     const [currentUser, setCurrentUser] = useState(null);
@@ -28,6 +33,7 @@ export default function Home() {
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
         setCurrentUser(user);
+        navigate("/dashboard");
         // ...
         } else {
         // User is signed out
@@ -70,24 +76,22 @@ export default function Home() {
 
     return (
         <>
+            
 
-
-            <div class="signinButton">
+            <div className="row">
+              <div className= "title">Welcome to Paperhub</div>
+            </div>
+            <div className = "row">
+              
+            </div>
+            <div className="signinButton">
                 <Button variant="dark"  onClick={signInWithGoogle}>
                     <FcGoogle/> {"\u00a0"} Sign in with Google
-                </Button>
-            </div>
-
-            <div class="signoutButton">
-                <Button variant="primary"  onClick={SignOut}>
-                    Sign out
                 </Button>
             </div>
             <div>
                 {(currentUser==null) ? <div></div>: (currentUser==false) ? <h2>Please Sign in</h2> :<h2>Welcome!</h2>}
             </div>
-
-        
         </>
         
     )

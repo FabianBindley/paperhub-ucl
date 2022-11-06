@@ -78,6 +78,9 @@ export default function SignupStudent() {
           await setDoc(doc(db, "Users", currentUser.uid), {
             FName : FName.current.value,
             LName : LName.current.value,
+            Email: currentUser.email,
+            userUID:currentUser.uid,
+            votedAnswers: {}
         })
         alert("Added profile successfully!")
         navigate("/dashboard")
@@ -96,27 +99,32 @@ export default function SignupStudent() {
     return (
       <>
          <div class="SignupContainer">
-        <h1> Welcome new Student! </h1>
-        <Card >
-            <Card.Body>
-                <Form>
-                    
-                    <Form.Group className="mb-3" controlId="StudentFName">
-                        <Form.Label>First Name: This cannot be changed later</Form.Label>
-                        <Form.Control type="text" placeholder="First Name" ref = {FName} required/>
-                    </Form.Group>
+        <div class = "title"> Welcome new Student! </div>
 
-                    <Form.Group className="mb-3" controlId="StudentLName">
-                        <Form.Label>Last Name: This cannot be chanegd later</Form.Label>
-                        <Form.Control type="text" placeholder="Last Name" ref = {LName} required/>
-                    </Form.Group>
+        <div class = "mainContent">
+          <Card >
+              <Card.Body>
+                  <Form>
+                      
+                      <Form.Group className="mb-3" controlId="StudentFName">
+                          <Form.Label>First Name: This cannot be changed later</Form.Label>
+                          <Form.Control type="text" placeholder="First Name" ref = {FName} required/>
+                      </Form.Group>
 
-                    <Button variant="primary" type="submit" onClick={handleStudentSubmit}>
-                        Submit
-                    </Button>
-                    </Form>
-                </Card.Body>
-            </Card>
+                      <Form.Group className="mb-3" controlId="StudentLName">
+                          <Form.Label>Last Name: This cannot be chanegd later</Form.Label>
+                          <Form.Control type="text" placeholder="Last Name" ref = {LName} required/>
+                      </Form.Group>
+
+                      <Button variant="primary" type="submit" onClick={handleStudentSubmit}>
+                          Submit
+                      </Button>
+                      </Form>
+                  </Card.Body>
+              </Card>
+
+        </div>
+        
               
         </div>
         </>
