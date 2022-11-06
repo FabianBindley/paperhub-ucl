@@ -80,8 +80,8 @@ export default function Home() {
         <div class="mainContent">
             <div class = "homebody">
             <div className="row">
-              <div className= "title">Welcome to <img src={logo} alt = "paperhub" width = "500" height = "100"/></div>
-              <div className= "subtitle">UCL's premier past paper platform</div>
+              <div className= "title">Welcome to&nbsp;<strong>UCL Paper Hub</strong></div>
+              <div className= "subtitle">UCL's premier past paper answer discussion platform</div>
             </div>
             <div className = "row">
               
