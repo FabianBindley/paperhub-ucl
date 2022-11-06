@@ -19,7 +19,9 @@ export default function Paper(props) {
 
     var answersArr = ""
     var currentUser = ""
-    const [paperCard, setPaperCard] = useState(<h1>Loading</h1>)
+    const [URL, setURL] = useState("")
+    const [paperCard, setPaperCard] = useState("")
+    
     
     const [currentUserData, setCurrentUserData] = useState(null)
     const [showAddSubmission, setShowAddSubmission] = useState(false)
@@ -86,7 +88,8 @@ export default function Paper(props) {
             }
             else{
                 answersArr = data.data().answers
-                
+                console.log(data.data().URL)
+                setURL(data.data().URL)
                 generatePaperCard(data.data().answers)
                 
             }
@@ -123,8 +126,6 @@ export default function Paper(props) {
                 console.log(voted);             
                 return voted;
             }
-
-                
         })
     }
 
@@ -173,6 +174,9 @@ export default function Paper(props) {
     {
         checkVote(id).then((voted) => {
             let voted_answer = voted[id];
+            if (voted_answer == undefined) {
+                voted_answer = 0;
+            }
             console.log('downvote');
             console.log(voted_answer);
             console.log(answersArr)
@@ -203,6 +207,9 @@ export default function Paper(props) {
     {
         checkVote(id).then((voted)=> {
             let voted_answer = voted[id];
+            if (voted_answer == undefined) {
+                voted_answer = 0;
+            }
             console.log('data');
             console.log(voted_answer);
             console.log(answersArr);
@@ -271,7 +278,7 @@ export default function Paper(props) {
                 <>
       
                    
-                    <div class="titlePaper">Answers for: {paper}</div>
+                    
                         <ListGroup>
                         {answers.map((answer) => (
                             <>
@@ -337,11 +344,12 @@ export default function Paper(props) {
     return (
         <>
           <NavbarPaper/>
-      
+          
             <div class="mainContent">
-
+                <div class="titlePaper">Answers for: <a href={URL}>{paper}</a></div>
+                
                 {paperCard}
-
+                
                 <div class = "addSubmissionArea">
                     <Button onClick = {toggleShowAddSubmission}>+ Add a submission</Button>
 

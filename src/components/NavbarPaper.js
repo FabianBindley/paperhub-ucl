@@ -3,7 +3,7 @@ import { Container,Nav,Navbar, Button} from 'react-bootstrap';
 import {db, auth} from '../firebase'
 import {  signOut } from "firebase/auth";
 import { GoSignOut } from 'react-icons/go';
-import logo from '../images/paperhub.png'
+import logo from '../images/paperhub2.png'
 
 function SignOut()
     {

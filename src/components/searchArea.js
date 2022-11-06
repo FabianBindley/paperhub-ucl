@@ -78,17 +78,17 @@ function checkUserHasAccount(user)
     var modulesArr = []
     var departmentsArr = []
 
-    console.log(modulesArr)
+    //console.log(modulesArr)
     axios.get(`http://localhost:3001/departments`)
     .then(response => {
-      //var departments = response.data.departments
+      var departments = response.data.departments
       departmentsArr = departmentsArr.concat(departments)
-      var departments = ["COMPS_ENG","ECONS_SHS"]
+      //var departments = ["COMPS_ENG","ECONS_SHS"]
       for (let i = 0; i < departments.length; i++)
       {
         
         //Iterate over the departments, and for each one get the modules
-        axios.get(`http://localhost:3001/modules?module=`+departments[i])
+        axios.get(`http://localhost:3001/modules?module=`+departments[i].department_id)
         .then(response => {
           var modules = response.data.modules
           //console.log(modules)
@@ -138,7 +138,7 @@ function checkUserHasAccount(user)
   const handleSearchBarValueChange = e => 
   {
     setSearchBarValue(e.target.value.toUpperCase())
-    console.log(e.target.value)
+    //console.log(e.target.value)
     fetchRecommendedSearchResults(e.target.value)
     
   }
@@ -164,7 +164,7 @@ function checkUserHasAccount(user)
       
       if (mod.includes(searchBarValue.toUpperCase()))
       {
-        console.log(allModulesArr[i])
+        //console.log(allModulesArr[i])
         searchResults.push(allModulesArr[i])
       }
     }
@@ -198,7 +198,7 @@ function checkUserHasAccount(user)
 
   function handleSubmitChoice()
   {
-    console.log(searchBarValue)
+    //console.log(searchBarValue)
     navigate("/module?module="+searchBarValue)
   }
 
@@ -206,7 +206,7 @@ function checkUserHasAccount(user)
   {
     e.preventDefault()
     clearListGroup()
-    console.log(e.target.getAttribute('value'))
+    //console.log(e.target.getAttribute('value'))
     navigate("/module?module="+e.target.getAttribute('value'))
   }
 

@@ -9,6 +9,7 @@ import { Button, Card, Image } from 'react-bootstrap';
 
 import { FcGoogle } from 'react-icons/fc';
 import { GoSignOut } from 'react-icons/go';
+import logo from '../images/paperhub2.png'
 
 import "../styling/home.css";
 
@@ -76,22 +77,39 @@ export default function Home() {
 
     return (
         <>
-            
-
+        <div class="mainContent">
+            <div class = "homebody">
             <div className="row">
-              <div className= "title">Welcome to Paperhub</div>
+              <div className= "title">Welcome to <img src={logo} alt = "paperhub" width = "500" height = "100"/></div>
+              <div className= "subtitle">UCL's premier past paper platform</div>
             </div>
             <div className = "row">
               
             </div>
-            <div className="signinButton">
-                <Button variant="dark"  onClick={signInWithGoogle}>
-                    <FcGoogle/> {"\u00a0"} Sign in with Google
-                </Button>
+            
+                <Card>
+                    <div class="row">
+                        <div className="signinButton">
+                            <Button id="signinbuttonbutton" variant="dark"  onClick={signInWithGoogle}>
+                                <FcGoogle/> {"\u00a0"} Sign in with Google
+                            </Button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="subtitle">
+                            {(currentUser==null) ? <div></div>: (currentUser==false) ? <h2>Please Sign in</h2> :<h2>Welcome!</h2>}
+                        </div>
+                    </div>
+                    
+                   
+                </Card>
             </div>
-            <div>
-                {(currentUser==null) ? <div></div>: (currentUser==false) ? <h2>Please Sign in</h2> :<h2>Welcome!</h2>}
+
+
             </div>
+            
+          
+            
         </>
         
     )

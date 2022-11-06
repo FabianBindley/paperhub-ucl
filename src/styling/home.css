@@ -3,11 +3,20 @@
 .signinbutton {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 200px;
-    border: 3px solid green;
+    /* border: 3px solid green; */
   }
 
+#signinbuttonbutton {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#subtitle {
+    text-align:center;
+}
+body {
+    text-align:center;
+}
 
 
 .title{
@@ -15,8 +24,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
-    border: 3px solid green;
+    padding-top: 5vh;
+    /*border: 3px solid green;*/
+}
+
+.subtitle{
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5vh;
+    /*border: 3px solid green;*/
 }
 
 
